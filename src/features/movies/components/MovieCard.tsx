@@ -1,5 +1,36 @@
-const MovieCard = () => {
-  return <p>Movie Card</p>;
+type Props = {
+  title: string;
+  year: string;
+  plot: string;
+  rating: number;
+  thumbnail: string;
+};
+
+const MovieCard = ({ title, year, plot, rating, thumbnail }: Props) => {
+  return (
+    <div className="w-full max-w-[360px] rounded-2xl overflow-hidden border-2 border-slate-50 bg-zinc-900/50">
+      <div>
+        <img className="w-full aspect-square object-cover" src={thumbnail} />
+      </div>
+      <div className="flex flex-col gap-0.5 py-2 px-2.5">
+        <h3 className="font-semibold text-lg overflow-hidden whitespace-nowrap text-ellipsis mb-1.5">
+          {title}
+        </h3>
+        <div className="flex justify-between items-center">
+          <span>Year:</span>
+          <span className="font-medium">{year}</span>
+        </div>
+        <div className="flex justify-between items-center">
+          <span>Rating:</span>
+          <span className="font-medium">{rating}</span>
+        </div>
+        <div className="mt-2">
+          <span>Plot:</span>
+          <p className="mt-1 line-clamp-3">{plot}</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default MovieCard;
