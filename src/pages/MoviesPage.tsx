@@ -11,8 +11,12 @@ const MoviesPage = () => {
 
   return (
     <>
-      <MovieSearch />
-      <MovieList movies={moviesData?.results} />
+      <MovieSearch isMoviesLoading={isMoviesLoading} />
+      <MovieList
+        movies={moviesData?.results}
+        isMoviesError={isMoviesError}
+        isMoviesLoading={isMoviesLoading}
+      />
     </>
   );
 };

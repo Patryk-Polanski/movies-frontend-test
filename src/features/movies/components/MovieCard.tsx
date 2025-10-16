@@ -12,7 +12,7 @@ type Props = {
 
 const MovieCard = ({ title, year, plot, rating, thumbnail }: Props) => {
   return (
-    <div className="w-full max-w-[360px] rounded-2xl overflow-hidden border-2 border-slate-50 bg-zinc-900/50">
+    <div className="w-full max-w-[360px] rounded-2xl overflow-hidden border-2 border-slate-50/20 bg-zinc-900/50">
       <div>
         <img
           className="w-full aspect-square object-cover"
@@ -20,8 +20,8 @@ const MovieCard = ({ title, year, plot, rating, thumbnail }: Props) => {
         />
       </div>
       <div
-        className={`flex flex-col gap-0.5 py-2 px-2.5 ${
-          !thumbnail && "border-3 border-slate-50/10"
+        className={`flex flex-col gap-0.5 py-2 px-2.5  ${
+          !thumbnail && "border-t-3 border-slate-50/10"
         }`}
       >
         <h3 className="font-semibold text-lg overflow-hidden whitespace-nowrap text-ellipsis mb-1.5">

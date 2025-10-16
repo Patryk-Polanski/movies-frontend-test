@@ -1,14 +1,31 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
+import { useSearchParams } from "react-router-dom";
 
 type Props = {
   onSearch: (value: string) => void;
   buttonText?: string;
+  searchParam?: string;
+  isLoading: boolean;
 };
 
-const Search = ({ buttonText = "Search", onSearch }: Props) => {
+const Search = ({
+  isLoading,
+  buttonText = "Search",
+  onSearch,
+  searchParam,
+}: Props) => {
   const [search, setSearch] = useState("");
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    if (!searchParam) return;
+    const searchValue = searchParams.get(searchParam);
+    if (searchValue) {
+      setSearch(searchValue);
+    }
+  }, [searchParams, searchParam]);
 
   const handleChange = useCallback((value: string) => {
     setSearch(value);
@@ -27,8 +44,13 @@ const Search = ({ buttonText = "Search", onSearch }: Props) => {
       onSubmit={handleSubmit}
       className="flex gap-4 justify-center items-center"
     >
-      <Input onChange={handleChange} inputName="movie" inputId="movie" />
-      <Button buttonText={buttonText} />
+      <Input
+        onChange={handleChange}
+        inputName="movie"
+        inputId="movie"
+        value={search}
+      />
+      <Button buttonText={buttonText} isLoading={isLoading} />
     </form>
   );
 };

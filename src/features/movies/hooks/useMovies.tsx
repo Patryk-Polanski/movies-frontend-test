@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-import type { Movie, MovieResponse } from "../types/movie";
+import type { MovieResponse } from "../types/movie";
 
 const TWO_MINUTES = 1000 * 60 * 2;
 
@@ -21,18 +21,19 @@ export const useMovies = () => {
           Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
         },
       });
-      console.log("res", res);
+
       if (!res.ok) {
         throw new Error("Something went wrong. Try again later");
       }
       const data = (await res.json()) as MovieResponse;
 
-      console.log("data", data);
       return data;
     },
     // each query key will be cached for two minutes to prevent a build up of browser cache if the user searches a lot
     // this is evident in the react query dec tools that was added to this project
     gcTime: TWO_MINUTES,
+    // only run when a search term exists
+    enabled: !!search,
   });
 
   return query;
