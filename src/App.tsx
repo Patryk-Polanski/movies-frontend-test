@@ -1,5 +1,5 @@
-function App() {
-  return <p className="text-red-500">Hello world</p>;
-}
+import Routes from "./Routes";
+
+const App = () => <Routes />;
 
 export default App;
