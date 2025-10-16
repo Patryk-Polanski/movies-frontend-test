@@ -1,9 +1,5 @@
 import Routes from "./Routes";
 
-const App = () => (
-  <div className="font-primary">
-    <Routes />
-  </div>
-);
+const App = () => <Routes />;
 
 export default App;
