@@ -1,51 +1,44 @@
+import type { Movie } from "../types/movie";
 import MovieCard from "./MovieCard";
 
-const MovieList = () => {
+type Props = {
+  movies?: Movie[];
+};
+
+const MovieList = ({ movies }: Props) => {
+  if (!Array.isArray(movies)) {
+    return (
+      <div className="mt-10 opacity-20 max-w-[500px] mx-auto">
+        <h2 className="text-center text-4xl font-semibold">
+          Start searching to find your favourite movies
+        </h2>
+      </div>
+    );
+  }
+
   return (
-    <section className="mt-6 grid grid-cols-1 justify-items-center items-start md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <MovieCard
-        title="Avatar"
-        year="2009"
-        rating={9.7}
-        plot="This is the Avatar plot"
-        thumbnail="https://images.pexels.com/photos/34293891/pexels-photo-34293891.jpeg?_gl=1*1f5vt3f*_ga*MTc0Mzc2NjY1LjE3NTY1MTQ2MDU.*_ga_8JE65Q40S6*czE3NjA2NDQzNzEkbzQkZzEkdDE3NjA2NDQzODMkajQ4JGwwJGgw"
-      />
-      <MovieCard
-        title="Avatar"
-        year="2009"
-        rating={9.7}
-        plot="This is the Avatar plot"
-        thumbnail="https://images.pexels.com/photos/34293891/pexels-photo-34293891.jpeg?_gl=1*1f5vt3f*_ga*MTc0Mzc2NjY1LjE3NTY1MTQ2MDU.*_ga_8JE65Q40S6*czE3NjA2NDQzNzEkbzQkZzEkdDE3NjA2NDQzODMkajQ4JGwwJGgw"
-      />
-      <MovieCard
-        title="Avatar"
-        year="2009"
-        rating={9.7}
-        plot="This is the Avatar plot"
-        thumbnail="https://images.pexels.com/photos/34293891/pexels-photo-34293891.jpeg?_gl=1*1f5vt3f*_ga*MTc0Mzc2NjY1LjE3NTY1MTQ2MDU.*_ga_8JE65Q40S6*czE3NjA2NDQzNzEkbzQkZzEkdDE3NjA2NDQzODMkajQ4JGwwJGgw"
-      />
-      <MovieCard
-        title="Avatar"
-        year="2009"
-        rating={9.7}
-        plot="This is the Avatar plot"
-        thumbnail="https://images.pexels.com/photos/34293891/pexels-photo-34293891.jpeg?_gl=1*1f5vt3f*_ga*MTc0Mzc2NjY1LjE3NTY1MTQ2MDU.*_ga_8JE65Q40S6*czE3NjA2NDQzNzEkbzQkZzEkdDE3NjA2NDQzODMkajQ4JGwwJGgw"
-      />
-      <MovieCard
-        title="Avatar"
-        year="2009"
-        rating={9.7}
-        plot="This is the Avatar plot"
-        thumbnail="https://images.pexels.com/photos/34293891/pexels-photo-34293891.jpeg?_gl=1*1f5vt3f*_ga*MTc0Mzc2NjY1LjE3NTY1MTQ2MDU.*_ga_8JE65Q40S6*czE3NjA2NDQzNzEkbzQkZzEkdDE3NjA2NDQzODMkajQ4JGwwJGgw"
-      />
-      <MovieCard
-        title="Avatar"
-        year="2009"
-        rating={9.7}
-        plot="This is the Avatar plot"
-        thumbnail="https://images.pexels.com/photos/34293891/pexels-photo-34293891.jpeg?_gl=1*1f5vt3f*_ga*MTc0Mzc2NjY1LjE3NTY1MTQ2MDU.*_ga_8JE65Q40S6*czE3NjA2NDQzNzEkbzQkZzEkdDE3NjA2NDQzODMkajQ4JGwwJGgw"
-      />
-    </section>
+    <>
+      {movies.length > 0 ? (
+        <section className="mt-6 grid grid-cols-1 justify-items-center items-start md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {movies.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              title={movie.title}
+              year={movie.release_date}
+              rating={movie.vote_average}
+              plot={movie.overview}
+              thumbnail={movie.poster_path}
+            />
+          ))}
+        </section>
+      ) : (
+        <div className="mt-10 opacity-20 max-w-[500px] mx-auto">
+          <h2 className="text-center text-4xl font-semibold">
+            No movies were found, please try a different movie
+          </h2>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -1,18 +1,29 @@
+import moviePlaceholder from "@/assets/images/moviePlaceholder.png";
+
+const TMDB_URL = "https://image.tmdb.org/t/p/";
+
 type Props = {
   title: string;
   year: string;
   plot: string;
   rating: number;
-  thumbnail: string;
+  thumbnail: string | null;
 };
 
 const MovieCard = ({ title, year, plot, rating, thumbnail }: Props) => {
   return (
     <div className="w-full max-w-[360px] rounded-2xl overflow-hidden border-2 border-slate-50 bg-zinc-900/50">
       <div>
-        <img className="w-full aspect-square object-cover" src={thumbnail} />
+        <img
+          className="w-full aspect-square object-cover"
+          src={thumbnail ? TMDB_URL + "w500" + thumbnail : moviePlaceholder}
+        />
       </div>
-      <div className="flex flex-col gap-0.5 py-2 px-2.5">
+      <div
+        className={`flex flex-col gap-0.5 py-2 px-2.5 ${
+          !thumbnail && "border-3 border-slate-50/10"
+        }`}
+      >
         <h3 className="font-semibold text-lg overflow-hidden whitespace-nowrap text-ellipsis mb-1.5">
           {title}
         </h3>
