@@ -12,7 +12,7 @@ type Props = {
 
 const MovieCard = ({ title, year, plot, rating, thumbnail }: Props) => {
   return (
-    <div className="w-full max-w-[360px] rounded-2xl overflow-hidden border-2 border-slate-50/20 bg-zinc-900/50">
+    <div className="w-full max-w-[360px] rounded-2xl overflow-hidden border-2 border-slate-50/20 bg-zinc-900/50 mx-auto">
       <div>
         <img
           className="w-full aspect-square object-cover"
