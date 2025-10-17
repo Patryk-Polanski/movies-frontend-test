@@ -25,6 +25,8 @@ export const useMovies = () => {
       if (!res.ok) {
         throw new Error("Something went wrong. Try again later");
       }
+
+      // TODO: add some validation for the incoming request, for example with Zod
       const data = (await res.json()) as MovieResponse;
 
       return data;

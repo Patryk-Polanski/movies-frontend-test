@@ -6,7 +6,7 @@ type Props = {
   title: string;
   year: string;
   plot: string;
-  rating: number;
+  rating: number | null;
   thumbnail: string | null;
 };
 
@@ -29,15 +29,15 @@ const MovieCard = ({ title, year, plot, rating, thumbnail }: Props) => {
         </h3>
         <div className="flex justify-between items-center">
           <span>Year:</span>
-          <span className="font-medium">{year}</span>
+          <span className="font-medium">{year} || unknown</span>
         </div>
         <div className="flex justify-between items-center">
           <span>Rating:</span>
-          <span className="font-medium">{rating}</span>
+          <span className="font-medium">{rating} || unknown</span>
         </div>
         <div className="mt-2">
           <span>Plot:</span>
-          <p className="mt-1 line-clamp-3">{plot}</p>
+          <p className="mt-1 line-clamp-3">{plot} || No movie plot</p>
         </div>
       </div>
     </div>
