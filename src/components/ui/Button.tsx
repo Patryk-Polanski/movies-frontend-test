@@ -32,6 +32,7 @@ const Button = ({
     <button
       className="bg-fuchsia-500 hover:bg-fuchsia-600 transition-all duration-200 ease-in text-slate-50 py-2 px-14 rounded-lg font-medium cursor-pointer relative"
       onClick={onClick}
+      disabled={isLoading}
     >
       {!isLoading ? (
         <span>{buttonText}</span>

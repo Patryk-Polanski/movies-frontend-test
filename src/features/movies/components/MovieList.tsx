@@ -28,7 +28,7 @@ const MovieList = ({
 
   if (isMoviesError) {
     return (
-      <div className="mt-10 opacity-20 max-w-[500px] mx-auto">
+      <div className="mt-10 opacity-30 max-w-[500px] mx-auto">
         <h2 className="text-center text-4xl font-semibold">
           Something went wrong, please try again
         </h2>
@@ -38,7 +38,7 @@ const MovieList = ({
 
   if (!Array.isArray(movies)) {
     return (
-      <div className="mt-10 opacity-20 max-w-[500px] mx-auto">
+      <div className="mt-10 opacity-30 max-w-[500px] mx-auto">
         <h2 className="text-center text-4xl font-semibold">
           Start searching to find your favourite movies
         </h2>
@@ -50,22 +50,23 @@ const MovieList = ({
     <>
       {movies.length > 0 ? (
         <section className="mt-6">
-          <div className="grid grid-cols-1 justify-items-center items-start md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <ul className="grid grid-cols-1 justify-items-center items-start md:grid-cols-2 lg:grid-cols-3 gap-8">
             {movies.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                title={movie.title}
-                year={movie.release_date}
-                rating={movie.vote_average}
-                plot={movie.overview}
-                thumbnail={movie.poster_path}
-              />
+              <li key={movie.id} className="w-full">
+                <MovieCard
+                  title={movie.title}
+                  year={movie.release_date}
+                  rating={movie.vote_average}
+                  plot={movie.overview}
+                  thumbnail={movie.poster_path}
+                />
+              </li>
             ))}
-          </div>
+          </ul>
           <MoviePagination totalPages={totalPages} />
         </section>
       ) : (
-        <div className="mt-10 opacity-20 max-w-[500px] mx-auto">
+        <div className="mt-10 opacity-30 max-w-[500px] mx-auto">
           <h2 className="text-center text-4xl font-semibold">
             No movies were found, please try a different movie
           </h2>

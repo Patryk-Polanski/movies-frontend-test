@@ -24,26 +24,28 @@ const Pagination = ({ totalPages, onClickPagination, queryParam }: Props) => {
   // TODO: example with 99 pages would be << < 1 ... 5, 6, 7 ... 99 > >>
   const paginationEl = useMemo(() => {
     if (!totalPages) return null;
+
     return Array.from(
       { length: totalPages > 10 ? 10 : totalPages },
       (_, i) => i
     ).map((page) => (
-      <Button
-        active={Number(pagination) === page + 1}
-        variant="outline"
-        key={page}
-        buttonText={`${page + 1}`}
-        onClick={() => onClickPagination(String(page + 1))}
-      />
+      <li key={page}>
+        <Button
+          active={Number(pagination) === page + 1}
+          variant="outline"
+          buttonText={`${page + 1}`}
+          onClick={() => onClickPagination(String(page + 1))}
+        />
+      </li>
     ));
   }, [totalPages, pagination, onClickPagination]);
 
   if (!totalPages) return null;
 
   return (
-    <div className="flex gap-2 justify-center items-center flex-wrap">
+    <ol className="flex gap-2 justify-center items-center flex-wrap">
       {paginationEl}
-    </div>
+    </ol>
   );
 };
 
