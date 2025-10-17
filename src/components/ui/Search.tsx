@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 type Props = {
   onSearch: (value: string) => void;
   buttonText?: string;
-  searchParam?: string;
+  queryParam?: string;
   isLoading: boolean;
 };
 
@@ -14,18 +14,18 @@ const Search = ({
   isLoading,
   buttonText = "Search",
   onSearch,
-  searchParam,
+  queryParam,
 }: Props) => {
   const [search, setSearch] = useState("");
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    if (!searchParam) return;
-    const searchValue = searchParams.get(searchParam);
+    if (!queryParam) return;
+    const searchValue = searchParams.get(queryParam);
     if (searchValue) {
       setSearch(searchValue);
     }
-  }, [searchParams, searchParam]);
+  }, [searchParams, queryParam]);
 
   const handleChange = useCallback((value: string) => {
     setSearch(value);
@@ -42,7 +42,7 @@ const Search = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex gap-4 justify-center items-center"
+      className="flex flex-col sm:flex-row gap-4 justify-center items-center"
     >
       <Input
         onChange={handleChange}

@@ -2,13 +2,37 @@ import Spinner from "@/assets/icons/Spinner";
 
 type Props = {
   buttonText: string;
-  isLoading: boolean;
+  isLoading?: boolean;
+  variant?: "primary" | "outline";
+  active?: boolean;
+  onClick?: () => void;
 };
 
-// TODO: add more button variations (primary, secondary, etc)
-const Button = ({ isLoading, buttonText = "Button" }: Props) => {
+const Button = ({
+  isLoading,
+  buttonText = "Button",
+  variant = "primary",
+  active,
+  onClick,
+}: Props) => {
+  if (variant === "outline") {
+    return (
+      <button
+        className={`p-3 border-2 ${
+          !active ? "border-slate-50/20" : "border-fuchsia-500"
+        } cursor-pointer hover:border-slate-50/40 transition-all duration-200 ease-in`}
+        onClick={onClick}
+      >
+        {buttonText}
+      </button>
+    );
+  }
+
   return (
-    <button className="bg-fuchsia-500 text-slate-50 py-2 px-14 rounded-lg font-medium cursor-pointer relative">
+    <button
+      className="bg-fuchsia-500 hover:bg-fuchsia-600 transition-all duration-200 ease-in text-slate-50 py-2 px-14 rounded-lg font-medium cursor-pointer relative"
+      onClick={onClick}
+    >
       {!isLoading ? (
         <span>{buttonText}</span>
       ) : (

@@ -14,6 +14,7 @@ const MoviesPage = () => {
       <MovieSearch isMoviesLoading={isMoviesLoading} />
       <MovieList
         movies={moviesData?.results}
+        totalPages={moviesData?.total_pages}
         isMoviesError={isMoviesError}
         isMoviesLoading={isMoviesLoading}
       />

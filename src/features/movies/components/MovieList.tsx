@@ -1,14 +1,21 @@
 import Spinner from "@/assets/icons/Spinner";
 import type { Movie } from "../types/movie";
 import MovieCard from "./MovieCard";
+import MoviePagination from "./MoviePagination";
 
 type Props = {
   movies?: Movie[];
+  totalPages?: number;
   isMoviesError: boolean;
   isMoviesLoading: boolean;
 };
 
-const MovieList = ({ movies, isMoviesLoading, isMoviesError }: Props) => {
+const MovieList = ({
+  movies,
+  totalPages,
+  isMoviesLoading,
+  isMoviesError,
+}: Props) => {
   if (isMoviesLoading) {
     return (
       <div className="relative mt-40">
@@ -42,17 +49,20 @@ const MovieList = ({ movies, isMoviesLoading, isMoviesError }: Props) => {
   return (
     <>
       {movies.length > 0 ? (
-        <section className="mt-6 grid grid-cols-1 justify-items-center items-start md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {movies.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              title={movie.title}
-              year={movie.release_date}
-              rating={movie.vote_average}
-              plot={movie.overview}
-              thumbnail={movie.poster_path}
-            />
-          ))}
+        <section className="mt-6">
+          <div className="grid grid-cols-1 justify-items-center items-start md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {movies.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                title={movie.title}
+                year={movie.release_date}
+                rating={movie.vote_average}
+                plot={movie.overview}
+                thumbnail={movie.poster_path}
+              />
+            ))}
+          </div>
+          <MoviePagination totalPages={totalPages} />
         </section>
       ) : (
         <div className="mt-10 opacity-20 max-w-[500px] mx-auto">

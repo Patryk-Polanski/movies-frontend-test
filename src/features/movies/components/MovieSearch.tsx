@@ -35,7 +35,7 @@ const MovieSearch = ({ isMoviesLoading }: Props) => {
     <section className="mt-6">
       <Search
         onSearch={handleSearch}
-        searchParam="search"
+        queryParam="search"
         isLoading={isMoviesLoading}
       />
     </section>
