@@ -21,6 +21,7 @@ const MovieCard = ({
   movieId,
 }: Props) => {
   const [favourite, setIsFavourite] = useState(() => {
+    // TODO: this is repeated twice, outsource it to a reusable fn or custom hook i.e. useLocalStorage
     const favourites: string = localStorage.getItem("favourites") || "[]";
     const favouritesArr: number[] = JSON.parse(favourites);
 
@@ -64,6 +65,7 @@ const MovieCard = ({
         </h3>
         <div>
           <label className="sr-only" htmlFor={`option-{$movieId}`}>
+            {/* TODO: make this text dynamic */}
             Favourite
           </label>
           <input
