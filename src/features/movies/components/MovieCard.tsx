@@ -21,7 +21,7 @@ const MovieCard = ({
   movieId,
 }: Props) => {
   const [favourite, setIsFavourite] = useState(() => {
-    // TODO: this is repeated twice, outsource it to a reusable fn or custom hook i.e. useLocalStorage
+    // TODO: this is repeated twice, outsource it to a reusable fn or custom hook i.e. useLocalStorage (also lift this logic to parent component and pass in isFavourite + updateFavourites function props)
     const favourites: string = localStorage.getItem("favourites") || "[]";
     const favouritesArr: number[] = JSON.parse(favourites);
 
