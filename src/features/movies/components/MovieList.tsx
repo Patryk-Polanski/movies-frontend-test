@@ -54,6 +54,7 @@ const MovieList = ({
             {movies.map((movie) => (
               <li key={movie.id} className="w-full">
                 <MovieCard
+                  movieId={movie.id}
                   title={movie.title}
                   year={movie.release_date}
                   rating={movie.vote_average}
